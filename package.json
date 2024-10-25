@@ -8,6 +8,7 @@
     "version": "vinxi version"
   },
   "dependencies": {
+    "@imagemagick/magick-wasm": "^0.0.31",
     "@solidjs/meta": "^0.29.4",
     "@solidjs/router": "^0.14.10",
     "@solidjs/start": "^1.0.9",
