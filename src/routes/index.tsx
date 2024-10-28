@@ -6,11 +6,15 @@ import {createSignal, For} from "solid-js";
 export default function Home() {
     const [get_files, set_files] = createSignal<File[]>([]);
 
+
+
   return (
     <main>
       <Title>Hello World</Title>
       <h1>Hello world!</h1>
-     <FileSelector set_files={set_files} />
+     <FileSelector set_files={(files) => {
+         const uniFiles = new Set(get_files().concat(files))
+         set_files([...uniFiles])}} />
     <li>
         <For each={get_files()}>
             {(file, i) => (<ol>{file.name}</ol>)}

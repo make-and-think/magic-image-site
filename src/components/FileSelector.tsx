@@ -1,6 +1,7 @@
-import { createSignal } from "solid-js";
-import type { Component } from 'solid-js';
+import {createSignal} from "solid-js";
+import type {Component} from 'solid-js';
 import "./FileSelector.css";
+
 
 type SelectFiles = {
     set_files: (value: File[]) => void;
@@ -30,8 +31,10 @@ export const FileSelector: Component<SelectFiles> = (props) => {
 
     function handleDrop(event: DragEvent) {
         event.preventDefault();
-        if (!event.dataTransfer?.files) {return}
-        const files = Array.from(event.dataTransfer.files);  // Ensure all files are captured
+        if (!event.dataTransfer?.files) {
+            return
+        }
+        const files = Array.from(event.dataTransfer.files);
         props.set_files(files);
         setIsDragging(false);
     }
@@ -42,7 +45,7 @@ export const FileSelector: Component<SelectFiles> = (props) => {
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
-            onClick={()=> fileInput.click()}
+            onClick={() => fileInput.click()}
         >
             <p>Drag & drop files here, or click to select files</p>
         </div>
