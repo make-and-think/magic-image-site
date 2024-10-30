@@ -7,6 +7,7 @@ import {BlobWriter, ZipWriter} from "@zip.js/zip.js";
 import {fileToConvert} from "~/utils/forFiles";
 import {cache} from "@solidjs/router";
 import set = cache.set;
+import {ImageStatus} from "~/components/ImageStatus";
 
 export default function Home() {
     const [
@@ -43,11 +44,15 @@ export default function Home() {
             <h1>Hello world!</h1>
             <button disabled={false} onClick={handleConvertClick}>Convert!</button>
             <ZoneFileSelector addSelectedFiles={add_selectedFiles}/>
-            <li>
+            <table>
                 <For each={get_selectedFiles()}>
-                    {(fileObject, i) => (<ol>{fileObject.file.name} - {fileObject.hash}</ol>)}
+                    {(fileObject, i) =>
+                        <tr><ImageStatus currentFile={fileObject.file} progressStatus={0} resultObjectURL={"test"}/></tr>}
                 </For>
-            </li>
+            </table>
+
+
+
         </main>
     );
 }
