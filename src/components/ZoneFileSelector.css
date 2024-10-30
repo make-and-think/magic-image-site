@@ -13,6 +13,10 @@
     border-color: #00acc1;
 }
 
+.drop-zone.dragging p{
+    color: black;
+}
+
 .drop-zone p {
     font-size: 16px;
     color: white;

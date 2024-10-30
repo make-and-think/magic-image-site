@@ -928,6 +928,11 @@
   resolved "https://registry.yarnpkg.com/@types/resolve/-/resolve-1.20.2.tgz#97d26e00cd4a0423b4af620abecf3e6f442b7975"
   integrity sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==
 
+"@types/zip.js@^2.0.33":
+  version "2.0.33"
+  resolved "https://registry.yarnpkg.com/@types/zip.js/-/zip.js-2.0.33.tgz#475938ac155de55a3af3b9f51dd77ffe5bcc9eed"
+  integrity sha512-oecnHOuKeSSo5Qlde9YjyJy1g+ZtHNArzlnHVRTBkgYegmNCKK4CyJQjyAcHx+BpZTR4kIZmqdCtBZqApyZo1g==
+
 "@vercel/nft@^0.26.5":
   version "0.26.5"
   resolved "https://registry.yarnpkg.com/@vercel/nft/-/nft-0.26.5.tgz#f21e40576b76446851b6cbff79f39a72dab4d6b2"
@@ -1009,6 +1014,11 @@
     astring "^1.8.6"
     magicast "^0.2.10"
     recast "^0.23.4"
+
+"@zip.js/zip.js@^2.7.53":
+  version "2.7.53"
+  resolved "https://registry.yarnpkg.com/@zip.js/zip.js/-/zip.js-2.7.53.tgz#bf88e90d8eed562182c01339643bc405446b0578"
+  integrity sha512-G6Bl5wN9EXXVaTUIox71vIX5Z454zEBe+akKpV4m1tUboIctT5h7ID3QXCJd/Lfy2rSvmkTmZIucf1jGRR4f5A==
 
 abbrev@1:
   version "1.1.1"

@@ -1,43 +1,59 @@
 import {createSignal} from "solid-js";
 import type {Component} from 'solid-js';
-import "./FileSelector.css";
+import "./ZoneFileSelector.css";
+import {fileToConvert, imagePrepare} from "~/utils/forFiles";
 
 
 type SelectFiles = {
-    set_files: (value: File[]) => void;
+    addSelectedFiles: (value: fileToConvert[]) => void;
 };
 
-export const FileSelector: Component<SelectFiles> = (props) => {
+export const ZoneFileSelector: Component<SelectFiles> = (props) => {
     const [isDragging, setIsDragging] = createSignal(false);
+
     const fileInput = document.createElement('input');
     fileInput.type = 'file';         // Set input type to 'file'
     fileInput.multiple = true;       // Enable multiple file selection
     fileInput.addEventListener('change', handleFileSelected)
 
-    function handleFileSelected(event: Event) {
+    async function fileProcess(files: FileList) {
+        /* prepared files to usage and filter*/
+        let imagesList: fileToConvert[] = [];
+
+        for (let file of files) {
+            const tempData = await imagePrepare(file)
+            if (tempData === null) {continue}
+            imagesList.push(tempData)
+        }
+
+        props.addSelectedFiles(imagesList)
+        setIsDragging(false)
+    }
+
+    async function handleFileSelected(event: Event) {
         const element = event.currentTarget as HTMLInputElement;
         if (!element.files) return;
-        props.set_files(Array.from(element.files));
+        await fileProcess(element.files)
+
     }
 
-    function handleDragOver(event: DragEvent) {
-        event.preventDefault();
-        setIsDragging(true);
-    }
-
-    function handleDragLeave() {
-        setIsDragging(false);
-    }
-
-    function handleDrop(event: DragEvent) {
+    async function handleDrop(event: DragEvent) {
         event.preventDefault();
         if (!event.dataTransfer?.files) {
             return
         }
-        const files = Array.from(event.dataTransfer.files);
-        props.set_files(files);
-        setIsDragging(false);
+        await fileProcess(event.dataTransfer.files)
     }
+
+    function handleDragOver(event: DragEvent) {
+        event.preventDefault();
+        setIsDragging(true)
+    }
+
+    function handleDragLeave() {
+        setIsDragging(false)
+    }
+
 
     return (
         <div
