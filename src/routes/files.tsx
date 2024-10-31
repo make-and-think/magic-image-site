@@ -22,6 +22,7 @@ export default function Files() {
             const array = new Uint8Array(arrayBuffer)
             ImageMagick.read(array, (image) => {
                 console.log(image.toString())
+                console.log(image)
                 image.write(MagickFormat.Jpeg, data => {
 
                     let file_link = document.createElement("a")
@@ -32,7 +33,9 @@ export default function Files() {
                     file_link.download = "test.jpg"
                     file_link.click()
                     console.log(data.length);
+                    console.log(image)
                 });
+
             })
 
         }

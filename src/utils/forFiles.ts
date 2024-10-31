@@ -18,8 +18,15 @@ export type fileToConvert = {
     imageInfo: MagickImageInfo
     hash: number
     bytes: Uint8Array
+    imageStatus: ImageStatusProgress
 
 };
+
+export enum ImageStatusProgress {
+    Loaded,
+    Converting,
+    Converted
+}
 
 export function humanFileSize(bytes: number, si = false, dp = 1) {
     const thresh = si ? 1000 : 1024;
@@ -64,7 +71,8 @@ export async function imagePrepare(file: File): Promise<null | fileToConvert> {
             file: file,
             imageInfo: magickImageInfo,
             hash: hash,
-            bytes: fileBytes
+            bytes: fileBytes,
+            imageStatus : ImageStatusProgress.Loaded
         }
     }
 
