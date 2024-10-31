@@ -16,9 +16,9 @@ export const ImageStatus: Component<ImageStatusType> = (props) => {
             <p>{fileToConvert.file.name}</p>
             <div class="status-container">
                 <p class="status-text">
-                    {fileToConvert.imageStatus === ImageStatusProgress.Loaded && "Loaded"}
-                    {fileToConvert.imageStatus === ImageStatusProgress.Converting && "Converting"}
-                    {fileToConvert.imageStatus === ImageStatusProgress.Converted && "Converted"}
+                    {fileToConvert.imageStatus === ImageStatusProgress.Loaded && "Loaded 📦"}
+                    {fileToConvert.imageStatus === ImageStatusProgress.Converting && "Converting ⏳"}
+                    {fileToConvert.imageStatus === ImageStatusProgress.Converted && "Converted ✅"}
                 </p>
                 {fileToConvert.imageStatus === ImageStatusProgress.Converted && (
                     <a href={fileToConvert.file.name} download class="download-button">
