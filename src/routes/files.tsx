@@ -1,11 +1,7 @@
 import {Title} from "@solidjs/meta";
 import {createStore} from "solid-js/store";
 
-import {
-    ImageMagick,
-    MagickFormat,
-    MagickReadSettings
-} from '@imagemagick/magick-wasm';
+import {ImageMagick, MagickFormat} from '@imagemagick/magick-wasm';
 
 export default function Files() {
     const [store, setStore] = createStore({
@@ -20,21 +16,28 @@ export default function Files() {
             console.log(file);
             const arrayBuffer = await file.arrayBuffer()
             const array = new Uint8Array(arrayBuffer)
+
             ImageMagick.read(array, (image) => {
                 console.log(image.toString())
                 console.log(image)
-                image.write(MagickFormat.Jpeg, data => {
+                for (const format in MagickFormat) {
+                    console.log(format)
+                    try {
+                        image.write(format, data => {
 
-                    let file_link = document.createElement("a")
-                    let fileBlob = new Blob([data], {
-                        type: "image/jpeg"
-                    });
-                    file_link.href = URL.createObjectURL(fileBlob)
-                    file_link.download = "test.jpg"
-                    file_link.click()
-                    console.log(data.length);
-                    console.log(image)
-                });
+                            let file_link = document.createElement("a")
+                            let fileBlob = new Blob([data]);
+                            file_link.href = URL.createObjectURL(fileBlob)
+                            file_link.download = `all_test_output.${format.toLowerCase()}`
+                            file_link.click()
+                            console.log(data.length);
+                            console.log(image)
+                        });
+                    } catch (e) {
+                        console.log(e)
+                    }
+                }
+
 
             })
 

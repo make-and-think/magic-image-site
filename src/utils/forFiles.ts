@@ -19,7 +19,6 @@ export type fileToConvert = {
     hash: number
     bytes: Uint8Array
     imageStatus: ImageStatusProgress
-
 };
 
 export enum ImageStatusProgress {
@@ -54,16 +53,19 @@ export async function imagePrepare(file: File): Promise<null | fileToConvert> {
     let fileBytes: Uint8Array | undefined = new Uint8Array(await file.arrayBuffer());
     let magickImageInfo: MagickImageInfo | undefined = new MagickImageInfo();
 
-    try {
-        magickImageInfo.read(fileBytes)
-    } catch (e) {
-        console.log(`file ${file.name} not supported`)
-        fileBytes = undefined;
-        magickImageInfo = undefined;
-        return null
-    }
+    // try {
+    //     magickImageInfo.read(fileBytes)
+    //     console.log(magickImageInfo.format)
+    // } catch (e) {
+    //     console.log(e)
+    //     console.log(`file ${file.name} not supported`)
+    //     fileBytes = undefined;
+    //     magickImageInfo = undefined;
+    //     return null
+    // }
 
-    if (magickImageInfo.format != MagickFormat.Unknown) {
+    //if (magickImageInfo.format != MagickFormat.Unknown) {
+    if (true) {
         const {create32} = await XXHashAPI()
         const hash = create32().update(fileBytes).digest()
 

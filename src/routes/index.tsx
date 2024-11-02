@@ -47,13 +47,15 @@ export default function Home() {
 
         const settings = new MagickReadSettings()
 
+
         for (let i = 0; get_store.files.length > i; i++) {
             const fileObject = get_store.files[i];
 
             set_store("files", i, {imageStatus: ImageStatusProgress.Converting})
 
             console.log("start convert", fileObject.file.name)
-            const blobConverted = await convertImage(fileObject, settings, MagickFormat.WebP)
+            settings.format = MagickFormat.Icon
+            const blobConverted = await convertImage(fileObject, settings , MagickFormat.WebP)
             const imageBytesReader = new BlobReader(blobConverted)
             console.log(imageBytesReader)
             const newFilename = `${fileObject.file.name.split('.').slice(0, -1).join('.')}.${MagickFormat.WebP.toLowerCase()}`
